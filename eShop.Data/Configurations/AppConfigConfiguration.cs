@@ -1,22 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using eShopSolution.Data.Entities;
+﻿using eShopSolution.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eShop.Data.Configurations
+namespace eShopSolution.Data.Configurations
 {
-    public class AppConfigConfiguration : IEntityTypeConfiguration<AppConfigConfiguration>
+    public class AppConfigConfiguration : IEntityTypeConfiguration<AppConfig>
     {
-        public object Key { get; private set; }
-        public object Value { get; private set; }
-
-        public void Configure(EntityTypeBuilder<AppConfigConfiguration> builder)
+        public void Configure(EntityTypeBuilder<AppConfig> builder)
         {
             builder.ToTable("AppConfigs");
+
             builder.HasKey(x => x.Key);
-            //builder.HasKey(x => x.Value).IsRequired(true);
+
+            builder.Property(x => x.Value).IsRequired(true);
         }
     }
 }
